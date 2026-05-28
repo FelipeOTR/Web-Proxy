@@ -10,7 +10,6 @@ app = Flask(__name__)
 
 # falta retornar uma página html personalizada caso o site seja bloqueado
 # log de acessos
-# não ser case sensitive os filtros
 
 @app.route("/<path:site>", methods=['POST', 'GET'])
 def filtro(site):
@@ -29,7 +28,15 @@ def filtro(site):
                 siteTexto = siteRequest.text
 
                 for word in wordsFile:
-                    siteTexto = siteTexto.replace(word, wordsFile[word])
+                    wordLower = word.lower()
+                    siteTextoLower = siteTexto.lower()
+
+                    posição = siteTextoLower.find(wordLower)
+
+                    while posição != -1:
+                        siteTexto = siteTexto[:posição] + wordsFile[word] + siteTexto[posição + len(word):]
+                        siteTextoLower = siteTexto.lower()
+                        posição = siteTextoLower.find(wordLower)
 
             return siteTexto
 
