@@ -5,6 +5,10 @@
   - Flask, request, json e urlparse
   - Para rodar o código, é necessário instalar a biblioteca Flask. As outras já são nativas da linguagem Python.
      └── no terminal: pip install Flask
+
+## Tecnologia escolhida
+
+- A tecnologia escolhida para a implementação do Web Proxy foi o Flask. Foi utilizado o Flask por ser de fácil implementação e por dar conta de todos os requisitos da implementação.
  
 ## Listas de configuração
 - O Web Proxy desenvolvido possui duas listas de configuração, de sites bloqueados (blocked.json) e de palavras filtradas (words.json).
