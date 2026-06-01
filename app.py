@@ -6,12 +6,6 @@ import time
 
 app = Flask(__name__)
 
-# 1) verificar se o site está bloqueado
-# 2) caso não esteja, retornar exatamnte oq teria no site, mas com as palavras filtradas, caso haja
-
-# falta retornar uma página html personalizada caso o site seja bloqueado
-# log de acessos
-
 @app.route("/<path:site>", methods=['POST', 'GET'])
 def filtro(site):
     with open('blocked.json', 'r') as blocked:
@@ -34,6 +28,7 @@ def filtro(site):
                 aaa = siteTexto
                 bk_siteTexto=siteTexto
 
+                # case-insensitive
                 for word in wordsFile:
                     wordLower = word.lower()
                     siteTextoLower = siteTexto.lower()
@@ -42,6 +37,7 @@ def filtro(site):
 
                     while posição != -1:
 
+                        # colocar a palavra no lugar da substituída
                         siteTexto = siteTexto[:posição] + wordsFile[word] + siteTexto[posição + len(word):]
                         siteTextoLower = siteTexto.lower()
                         aaa = posição
